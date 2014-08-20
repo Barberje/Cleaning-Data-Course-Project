@@ -1,0 +1,30 @@
+README
+========================================================
+
+# run_analysis.R script description.
+
+**summary**
+script intakes UCI HAR Dataset and outputs two data frames variables, dat_df and tidyset. 
+
+dat_df is the merged test and train data with descriptive column names and activity names. 
+
+tidySet takes the dat_df data and averages each measurement grouped by subject and activity. The script also produces a tidyset text file and places it in the working directory, called tidyset.txt.
+
+**script rundown**
+lines [14:22] read the UCI HAR datasets and integrate into data frames. [29] merges the train and test data frames.
+
+[31:38] is creates a vector of activity names by reading each activity number in the merged data frame, dat_df, looking up the related activity name, and putting it into a vector. [41] inserts that activity name vector as the third column in the data frame.
+
+[44:47] assembles the column names by importing the features.txt file from the UCI HAR dataset. [50] adds the column names to the data frame
+
+[53:54] finds all columns containing standard deviation and mean measurements by using the grep() function to find column names with "std" and "mean". [57] takes that data subset and creates a new data frame, stdmean_dat.
+
+[64:77] runs through each subject and activity in the new data frame, stdmean_dat, and averages the mean of each column. It then outputs the average values into a new data frame, tidySet. [80] reformats the new data frame.
+
+[83:88] recreates activity labels for the new data frame tidySet (lost in the data reformatting).
+
+[91] adds an activity label column to the new data frame (also lost in the data reformatting).
+
+[94] adds column names to tidySet.
+
+[97] writes tidySet to file.
